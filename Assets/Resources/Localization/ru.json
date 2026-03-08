@@ -1,0 +1,16 @@
+{
+    "ui.panel.objects":      "ОБЪЕКТЫ",
+    "ui.panel.no_selection": "— не выбрано —",
+    "ui.button.collapse":    "Скрыть",
+    "ui.button.expand":      "Показать",
+    "ui.button.focus":       "Фокус",
+    "ui.button.follow":      "Слежение",
+
+    "body.type.star":        "Звезда",
+    "body.type.planet":      "Планета",
+    "body.type.moon":        "Спутник",
+
+    "camera.mode.free":      "Свободно",
+    "camera.mode.focus":     "Фокус",
+    "camera.mode.follow":    "Слежение"
+}

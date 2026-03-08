@@ -1,0 +1,19 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements"
+         xsi:noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd"
+         editor-extension-mode="False">
+
+    <!--
+        TreeItem.uxml
+        Template for a single row in the object browser tree.
+        Instantiated at runtime by ObjectTreeUIController.
+        All text set from C#.
+    -->
+
+    <ui:VisualElement name="tree-item" class="tree-item">
+        <!-- Coloured type indicator dot -->
+        <ui:VisualElement name="dot" class="tree-item__dot" />
+        <!-- Body name -->
+        <ui:Label name="label" class="tree-item__label" text="" />
+    </ui:VisualElement>
+
+</ui:UXML>

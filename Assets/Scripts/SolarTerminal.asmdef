@@ -1,0 +1,18 @@
+{
+    "name": "SolarTerminal",
+    "rootNamespace": "SolarTerminal",
+    "references": [
+        "Unity.TextMeshPro",
+        "UnityEngine.UIElementsModule",
+        "Unity.InputSystem"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

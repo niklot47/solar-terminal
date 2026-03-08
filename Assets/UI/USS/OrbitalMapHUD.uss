@@ -1,0 +1,239 @@
+/*
+ * OrbitalMapHUD.uss
+ * Layout and component styles for the orbital map UI.
+ * Uses only design tokens from UITheme.uss — no raw colours here.
+ */
+
+/* ------------------------------------------------------------------ */
+/* Root overlay                                                         */
+/* ------------------------------------------------------------------ */
+
+.hud-root {
+    position: absolute;
+    left: 0; top: 0; right: 0; bottom: 0;
+    flex-direction: row;
+    background-color: rgba(0,0,0,0);
+    pointer-events: none;   /* pass clicks to 3D scene by default */
+}
+
+/* ------------------------------------------------------------------ */
+/* Side panel                                                           */
+/* ------------------------------------------------------------------ */
+
+.side-panel {
+    width: var(--panel-width);
+    height: 100%;
+    background-color: var(--color-bg-panel);
+    border-right-width: 1px;
+    border-right-color: var(--color-border);
+    flex-direction: column;
+    pointer-events: auto;
+    transition-property: translate;
+    transition-duration: var(--transition-duration);
+}
+
+.side-panel--collapsed {
+    translate: calc(-1 * var(--panel-width)) 0;
+}
+
+/* ------------------------------------------------------------------ */
+/* Panel header                                                         */
+/* ------------------------------------------------------------------ */
+
+.panel-header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 12px 8px 12px;
+    border-bottom-width: 1px;
+    border-bottom-color: var(--color-border);
+}
+
+.panel-title {
+    font-size: var(--font-size-header);
+    color: var(--color-text-secondary);
+    -unity-font-style: bold;
+    letter-spacing: 1.5px;
+    /* uppercase via USS not supported in older Unity — set in C# */
+}
+
+/* ------------------------------------------------------------------ */
+/* Toggle button (collapse/expand tab)                                  */
+/* ------------------------------------------------------------------ */
+
+.panel-toggle-btn {
+    position: absolute;
+    left: var(--panel-width);
+    top: 50%;
+    width: 20px;
+    height: 52px;
+    background-color: var(--color-bg-panel);
+    border-left-width: 0;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-right-width: 1px;
+    border-color: var(--color-border);
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    align-items: center;
+    justify-content: center;
+    -unity-text-align: middle-center;
+    pointer-events: auto;
+    color: var(--color-accent);
+    font-size: 11px;
+    padding: 0;
+
+    translate: 0 -26px;
+}
+
+.panel-toggle-btn:hover {
+    background-color: var(--color-accent-dim);
+    border-color: var(--color-border-strong);
+}
+
+/* ------------------------------------------------------------------ */
+/* Scroll view / tree container                                         */
+/* ------------------------------------------------------------------ */
+
+.tree-scroll {
+    flex-grow: 1;
+    overflow: scroll;
+}
+
+.tree-scroll > .unity-scroll-view__content-and-vertical-scroll-container
+  > .unity-scroll-view__content-viewport
+  > .unity-scroll-view__content-container {
+    padding: 4px 0;
+}
+
+/* ------------------------------------------------------------------ */
+/* Tree item                                                            */
+/* ------------------------------------------------------------------ */
+
+.tree-item {
+    flex-direction: row;
+    align-items: center;
+    height: var(--item-height);
+    padding-left: 8px;
+    padding-right: 8px;
+    background-color: var(--color-bg-item);
+    border-radius: var(--border-radius);
+
+}
+
+.tree-item:hover {
+    background-color: var(--color-bg-item-hover);
+}
+
+.tree-item--selected {
+    background-color: var(--color-bg-item-selected);
+    border-left-width: 2px;
+    border-left-color: var(--color-accent);
+}
+
+/* Body type dot */
+.tree-item__dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    margin-right: 8px;
+    flex-shrink: 0;
+}
+
+.tree-item__dot--star   { background-color: var(--color-star); }
+.tree-item__dot--planet { background-color: var(--color-planet); }
+.tree-item__dot--moon   { background-color: var(--color-moon); }
+
+/* Body name label */
+.tree-item__label {
+    font-size: var(--font-size-label);
+    color: var(--color-text-primary);
+    flex-grow: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.tree-item--selected .tree-item__label {
+    color: var(--color-accent-hover);
+}
+
+/* ------------------------------------------------------------------ */
+/* Info footer (selected object quick info)                             */
+/* ------------------------------------------------------------------ */
+
+.panel-footer {
+    border-top-width: 1px;
+    border-top-color: var(--color-border);
+    padding: 8px 12px;
+    flex-direction: column;
+}
+
+.panel-footer__name {
+    font-size: var(--font-size-label);
+    color: var(--color-text-primary);
+    margin-bottom: 4px;
+}
+
+.panel-footer__buttons {
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+/* ------------------------------------------------------------------ */
+/* Action buttons (Focus / Follow)                                      */
+/* ------------------------------------------------------------------ */
+
+.action-btn {
+    height: 26px;
+    padding: 0 10px;
+    margin-right: 6px;
+    border-width: 1px;
+    border-color: var(--color-border-strong);
+    border-radius: var(--border-radius);
+    background-color: rgba(0,0,0,0);
+    color: var(--color-accent);
+    font-size: var(--font-size-small);
+
+}
+
+.action-btn:hover {
+    background-color: var(--color-accent-dim);
+    border-color: var(--color-accent);
+}
+
+.action-btn--active {
+    background-color: var(--color-accent-dim);
+    border-color: var(--color-accent);
+    color: var(--color-accent-hover);
+}
+
+/* ------------------------------------------------------------------ */
+/* HUD top bar                                                          */
+/* ------------------------------------------------------------------ */
+
+.hud-topbar {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 36px;
+    flex-direction: row;
+    align-items: center;
+    padding: 0 16px;
+    background-color: var(--color-bg-panel);
+    border-bottom-width: 1px;
+    border-bottom-color: var(--color-border);
+    pointer-events: auto;
+}
+
+.hud-topbar__label {
+    font-size: var(--font-size-small);
+    color: var(--color-text-secondary);
+    margin-right: 20px;
+    letter-spacing: 0.8px;
+}
+
+.hud-topbar__value {
+    color: var(--color-text-primary);
+    font-size: var(--font-size-label);
+    -unity-font-style: bold;
+}

@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c13597c9b7547c41b997dc9cde44f69, type: 3}
+  m_Name: Earth
+  m_EditorClassIdentifier: SolarTerminal::SolarTerminal.Data.CelestialBodyDefinition
+  id: earth
+  bodyName: Earth
+  bodyType: 1
+  prefab: {fileID: 1544024178128140211, guid: e01bd8aa18290964ab58c126b734e2eb, type: 3}
+  visualRadius: 2
+  parentId: sun
+  semiMajorAxis: 200
+  eccentricity: 0.0167
+  inclination: 0
+  longitudeOfAscendingNode: 0
+  argumentOfPeriapsis: 1.796
+  meanAnomalyAtEpoch: 6.24
+  orbitalPeriod: 8766
+  orbitRadius: 120
+  orbitSpeed: 0.05
+  startAngle: 0

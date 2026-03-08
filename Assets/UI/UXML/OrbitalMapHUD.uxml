@@ -1,0 +1,22 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/USS/UITheme.uss?fileID=7433441132597879392&amp;guid=991000389a944eb448bba722804b2185&amp;type=3#UITheme"/>
+    <Style src="project://database/Assets/UI/USS/OrbitalMapHUD.uss?fileID=7433441132597879392&amp;guid=50624a092d88d404baeef62a176a7455&amp;type=3#OrbitalMapHUD"/>
+    <ui:VisualElement name="hud-root" class="hud-root">
+        <ui:VisualElement name="side-panel" class="side-panel">
+            <ui:VisualElement name="panel-header" class="panel-header">
+                <ui:Label name="panel-title" text="" class="panel-title"/>
+            </ui:VisualElement>
+            <ui:ScrollView name="tree-scroll" vertical-scroller-visibility="Auto" horizontal-scroller-visibility="Hidden" class="tree-scroll">
+                <ui:VisualElement name="tree-container"/>
+            </ui:ScrollView>
+            <ui:VisualElement name="panel-footer" class="panel-footer">
+                <ui:Label name="footer-name" text="" class="panel-footer__name"/>
+                <ui:VisualElement name="footer-buttons" class="panel-footer__buttons">
+                    <ui:Button name="btn-focus" text="" class="action-btn"/>
+                    <ui:Button name="btn-follow" text="" class="action-btn"/>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:Button name="panel-toggle" text="◀" class="panel-toggle-btn" style="top: 225px; left: 256px;"/>
+    </ui:VisualElement>
+</ui:UXML>
