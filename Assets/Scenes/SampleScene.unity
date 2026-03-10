@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 737a22271be949e4ca0054142f5dab3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: SolarTerminal::SolarTerminal.Core.SimulationTime
-  _timeScale: 60
+  _timeScale: 1
   _isPaused: 0
 --- !u!4 &79084772
 Transform:

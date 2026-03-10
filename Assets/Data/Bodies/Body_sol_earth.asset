@@ -27,7 +27,7 @@ MonoBehaviour:
   argumentOfPeriapsis: 1.796
   meanAnomalyAtEpoch: 6.24
   orbitalPeriod: 8766
-  rotationPeriodSeconds: 86164
+  rotationPeriodHours: 23.9345
   axialTiltDegrees: 23.4
   rotationPhaseAtEpochDegrees: 0
   isTidallyLocked: 0
