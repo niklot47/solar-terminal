@@ -1379,18 +1379,18 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp.csproj" />
-    <ProjectReference Include="ParallelCascades.ProceduralPlanetGenerationLite.Runtime.csproj" />
+    <ProjectReference Include="ParallelCascades.ProceduralShaders.Editor.csproj" />
+    <ProjectReference Include="ParallelCascades.ProceduralPlanetGenerationCommon.PostProcessing.csproj" />
     <ProjectReference Include="ParallelCascades.Common.Runtime.csproj" />
     <ProjectReference Include="ParallelCascades.ProceduralPlanetGenerationCommon.Editor.csproj" />
     <ProjectReference Include="SolarTerminal.csproj" />
     <ProjectReference Include="ParallelCascades.ProceduralShaders.Runtime.csproj" />
-    <ProjectReference Include="ParallelCascades.ProceduralShaders.Editor.csproj" />
     <ProjectReference Include="ParallelCascades.Common.Editor.csproj" />
     <ProjectReference Include="ParallelCascades.ProceduralPlanetGeneration.Runtime.csproj" />
-    <ProjectReference Include="ParallelCascades.ProceduralPlanetGenerationCommon.PostProcessing.csproj" />
     <ProjectReference Include="ParallelCascades.ProceduralPlanetGenerationLite.Editor.csproj" />
-    <ProjectReference Include="ParallelCascades.Common.Rendering.csproj" />
     <ProjectReference Include="ParallelCascades.ProceduralPlanetGenerationCommon.Runtime.csproj" />
+    <ProjectReference Include="ParallelCascades.ProceduralPlanetGenerationLite.Runtime.csproj" />
+    <ProjectReference Include="ParallelCascades.Common.Rendering.csproj" />
   </ItemGroup>
   <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
   <ItemGroup>

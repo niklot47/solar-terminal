@@ -27,6 +27,12 @@ MonoBehaviour:
   argumentOfPeriapsis: 1.796
   meanAnomalyAtEpoch: 6.24
   orbitalPeriod: 8766
+  rotationPeriodSeconds: 86164
+  axialTiltDegrees: 23.4
+  rotationPhaseAtEpochDegrees: 0
+  isTidallyLocked: 0
+  ringPrefab: {fileID: 0}
+  ringScale: 3.5
   nearPrefab: {fileID: 1544024178128140211, guid: e01bd8aa18290964ab58c126b734e2eb, type: 3}
   mediumPrefab: {fileID: 0}
   farPrefab: {fileID: 0}

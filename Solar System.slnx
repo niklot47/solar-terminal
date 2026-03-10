@@ -1,16 +1,16 @@
 ﻿<Solution>
-  <Project Path="ParallelCascades.ProceduralPlanetGenerationCommon.Runtime.csproj" />
-  <Project Path="ParallelCascades.Common.Runtime.csproj" />
-  <Project Path="SolarTerminal.csproj" />
-  <Project Path="ParallelCascades.ProceduralPlanetGenerationLite.Runtime.csproj" />
   <Project Path="ParallelCascades.ProceduralShaders.Editor.csproj" />
-  <Project Path="ParallelCascades.ProceduralPlanetGeneration.Runtime.csproj" />
-  <Project Path="ParallelCascades.ProceduralPlanetGenerationCommon.PostProcessing.csproj" />
-  <Project Path="Assembly-CSharp-Editor.csproj" />
-  <Project Path="ParallelCascades.ProceduralPlanetGenerationLite.Editor.csproj" />
-  <Project Path="ParallelCascades.Common.Editor.csproj" />
-  <Project Path="ParallelCascades.ProceduralPlanetGenerationCommon.Editor.csproj" />
-  <Project Path="ParallelCascades.Common.Rendering.csproj" />
-  <Project Path="Assembly-CSharp.csproj" />
+  <Project Path="ParallelCascades.ProceduralPlanetGenerationCommon.Runtime.csproj" />
+  <Project Path="SolarTerminal.csproj" />
   <Project Path="ParallelCascades.ProceduralShaders.Runtime.csproj" />
+  <Project Path="Assembly-CSharp-Editor.csproj" />
+  <Project Path="ParallelCascades.ProceduralPlanetGenerationLite.Runtime.csproj" />
+  <Project Path="ParallelCascades.Common.Runtime.csproj" />
+  <Project Path="ParallelCascades.ProceduralPlanetGenerationLite.Editor.csproj" />
+  <Project Path="ParallelCascades.ProceduralPlanetGenerationCommon.Editor.csproj" />
+  <Project Path="ParallelCascades.ProceduralPlanetGenerationCommon.PostProcessing.csproj" />
+  <Project Path="Assembly-CSharp.csproj" />
+  <Project Path="ParallelCascades.Common.Editor.csproj" />
+  <Project Path="ParallelCascades.ProceduralPlanetGeneration.Runtime.csproj" />
+  <Project Path="ParallelCascades.Common.Rendering.csproj" />
 </Solution>

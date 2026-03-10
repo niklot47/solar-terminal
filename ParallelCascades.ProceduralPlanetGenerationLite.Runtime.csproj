@@ -49,18 +49,18 @@
     <Analyzer Include="C:\MyPrograms\Unity\Hub\Editor\6000.3.10f1\Editor\Data\Tools\BuildPipeline\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\StoreAssets\ParallelCascades\ProceduralPlanetGenerationLite\Runtime\ProceduralComponents\WhorlsProceduralComponent.cs" />
-    <Compile Include="Assets\StoreAssets\ParallelCascades\ProceduralPlanetGenerationLite\Runtime\ProceduralGasGiantSimplifiedLite.cs" />
-    <Compile Include="Assets\StoreAssets\ParallelCascades\ProceduralPlanetGenerationLite\Runtime\ProceduralAsteroidRingLite.cs" />
-    <Compile Include="Assets\StoreAssets\ParallelCascades\ProceduralPlanetGenerationLite\Runtime\ProceduralGasGiantLite.cs" />
-    <Compile Include="Assets\StoreAssets\ParallelCascades\ProceduralPlanetGenerationLite\Runtime\ProceduralMoonLite.cs" />
-    <Compile Include="Assets\StoreAssets\ParallelCascades\ProceduralPlanetGenerationLite\Runtime\ProceduralEarthLikePlanetLite.cs" />
-    <Compile Include="Assets\StoreAssets\ParallelCascades\ProceduralPlanetGenerationLite\Runtime\GasGiantPatternSimplifiedProceduralComponent.cs" />
-    <Compile Include="Assets\StoreAssets\ParallelCascades\ProceduralPlanetGenerationLite\Runtime\ProceduralStarLite.cs" />
-    <Compile Include="Assets\StoreAssets\ParallelCascades\ProceduralPlanetGenerationLite\Runtime\ProceduralGasGiantWithStorms.cs" />
+    <Compile Include="Assets\ParallelCascades\ProceduralPlanetGenerationLite\Runtime\ProceduralComponents\WhorlsProceduralComponent.cs" />
+    <Compile Include="Assets\ParallelCascades\ProceduralPlanetGenerationLite\Runtime\ProceduralEarthLikePlanetLite.cs" />
+    <Compile Include="Assets\ParallelCascades\ProceduralPlanetGenerationLite\Runtime\ProceduralGasGiantWithStorms.cs" />
+    <Compile Include="Assets\ParallelCascades\ProceduralPlanetGenerationLite\Runtime\ProceduralStarLite.cs" />
+    <Compile Include="Assets\ParallelCascades\ProceduralPlanetGenerationLite\Runtime\ProceduralMoonLite.cs" />
+    <Compile Include="Assets\ParallelCascades\ProceduralPlanetGenerationLite\Runtime\GasGiantPatternSimplifiedProceduralComponent.cs" />
+    <Compile Include="Assets\ParallelCascades\ProceduralPlanetGenerationLite\Runtime\ProceduralGasGiantSimplifiedLite.cs" />
+    <Compile Include="Assets\ParallelCascades\ProceduralPlanetGenerationLite\Runtime\ProceduralGasGiantLite.cs" />
+    <Compile Include="Assets\ParallelCascades\ProceduralPlanetGenerationLite\Runtime\ProceduralAsteroidRingLite.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\StoreAssets\ParallelCascades\ProceduralPlanetGenerationLite\Runtime\ParallelCascades.ProceduralPlanetGenerationLite.Runtime.asmdef" />
+    <None Include="Assets\ParallelCascades\ProceduralPlanetGenerationLite\Runtime\ParallelCascades.ProceduralPlanetGenerationLite.Runtime.asmdef" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

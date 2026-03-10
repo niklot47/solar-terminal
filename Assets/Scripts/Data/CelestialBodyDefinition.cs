@@ -94,8 +94,39 @@ namespace SolarTerminal.Data
         [Tooltip("Mean anomaly at epoch t=0 (radians).")]
         public float meanAnomalyAtEpoch = 0f;
 
-        [Tooltip("Sidereal orbital period (simulation seconds). 0 for fixed/root bodies.")]
+        [Tooltip("Sidereal orbital period in simulation-hours. 0 for fixed/root bodies. " +
+                 "Earth = 8766, Moon = 655.7, Mars = 16488.")]
         public float orbitalPeriod = 0f;
+
+        [Header("Axial Rotation")]
+
+        [Tooltip("Sidereal rotation period in simulation-hours (same unit as orbitalPeriod). " +
+                 "Negative = retrograde. 0 = no spin. " +
+                 "Earth = 23.9345, Moon = 655.7 (tidally locked).")]
+        public float rotationPeriodHours = 0f;
+
+        [Tooltip("Axial tilt in degrees relative to orbital plane. " +
+                 "Earth = 23.4, Uranus ≈ 97.8")]
+        public float axialTiltDegrees = 0f;
+
+        [Tooltip("Initial spin angle at epoch t=0 in degrees. " +
+                 "Lets each body start at a different face.")]
+        public float rotationPhaseAtEpochDegrees = 0f;
+
+        [Tooltip("If true, this body keeps the same face toward its parent (e.g. Moon → Earth). " +
+                 "Overrides free spin calculation when enabled.")]
+        public bool isTidallyLocked = false;
+
+        [Header("Rings (optional)")]
+
+        [Tooltip("Prefab for planetary rings (e.g. Procedural Asteroid Ring). " +
+                 "Leave null for bodies without rings.")]
+        public GameObject ringPrefab;
+
+        [Tooltip("Ring scale multiplier relative to visualRadius. " +
+                 "1.0 = ring Transform.Scale equals visualRadius. " +
+                 "Typical value 3-5 so rings extend well beyond the planet surface.")]
+        public float ringScale = 3.5f;
 
         // ══════════════════════════════════════════════════════════════════
         // REPRESENTATION PREFABS

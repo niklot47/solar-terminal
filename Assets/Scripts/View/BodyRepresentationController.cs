@@ -38,6 +38,7 @@ namespace SolarTerminal.View
 
         private Camera                  _camera;
         private CelestialBodyDefinition _definition;
+        private Transform               _representationRoot; // VisualSpinRoot — all visuals parent here
 
         private GameObject _nearInstance;
         private GameObject _mediumInstance;
@@ -55,15 +56,19 @@ namespace SolarTerminal.View
         /// <summary>
         /// Primary init path: Bootstrap has already instantiated the near prefab.
         /// Controller receives that instance directly and builds medium/far on top.
+        /// representationRoot is the transform under which all visuals must live
+        /// (typically VisualSpinRoot, so they rotate with the body).
         /// </summary>
         public void InitializeWithInstance(
             CelestialBodyDefinition def,
             GameObject              nearInstance,
+            Transform               representationRoot,
             Camera                  camera)
         {
-            _definition  = def;
-            _camera      = camera != null ? camera : Camera.main;
-            _nearInstance = nearInstance;
+            _definition          = def;
+            _camera              = camera != null ? camera : Camera.main;
+            _nearInstance        = nearInstance;
+            _representationRoot  = representationRoot != null ? representationRoot : transform;
 
             BuildMediumAndFar();
             EvaluateAndApply();
@@ -75,10 +80,10 @@ namespace SolarTerminal.View
         /// </summary>
         public void Initialize(CelestialBodyDefinition def, Camera camera)
         {
-            _definition = def;
-            _camera     = camera != null ? camera : Camera.main;
+            _definition         = def;
+            _camera             = camera != null ? camera : Camera.main;
+            _representationRoot = transform; // no external spin root — use self
 
-            // Instantiate near from definition
             if (def.nearPrefab != null)
             {
                 _nearInstance = Instantiate(def.nearPrefab, transform);
@@ -97,12 +102,13 @@ namespace SolarTerminal.View
 
         private void BuildMediumAndFar()
         {
-            var def = _definition;
+            var def  = _definition;
+            var root = _representationRoot != null ? _representationRoot : transform;
 
             // Medium — optional separate prefab, otherwise share near instance
             if (def.mediumPrefab != null)
             {
-                _mediumInstance = Instantiate(def.mediumPrefab, transform);
+                _mediumInstance = Instantiate(def.mediumPrefab, root);
                 _mediumInstance.name = $"Medium_{def.id}";
                 _mediumInstance.transform.localPosition = Vector3.zero;
                 _mediumInstance.transform.localScale    = Vector3.one * Mathf.Max(def.visualRadius, 1f);
@@ -116,13 +122,13 @@ namespace SolarTerminal.View
 
             // Far — optional prefab, otherwise build fallback marker
             _farInstance = def.farPrefab != null
-                ? InstantiateFarPrefab(def)
-                : BuildFallbackMarker(def);
+                ? InstantiateFarPrefab(def, root)
+                : BuildFallbackMarker(def, root);
         }
 
-        private GameObject InstantiateFarPrefab(CelestialBodyDefinition def)
+        private GameObject InstantiateFarPrefab(CelestialBodyDefinition def, Transform root)
         {
-            var go = Instantiate(def.farPrefab, transform);
+            var go = Instantiate(def.farPrefab, root);
             go.name = $"Far_{def.id}";
             go.transform.localPosition = Vector3.zero;
             return go;
@@ -132,11 +138,11 @@ namespace SolarTerminal.View
         // Fallback marker
         // ------------------------------------------------------------------
 
-        private GameObject BuildFallbackMarker(CelestialBodyDefinition def)
+        private GameObject BuildFallbackMarker(CelestialBodyDefinition def, Transform root)
         {
             var marker = GameObject.CreatePrimitive(PrimitiveType.Sphere);
             marker.name = $"FarMarker_{def.id}";
-            marker.transform.SetParent(transform);
+            marker.transform.SetParent(root);
             marker.transform.localPosition = Vector3.zero;
 
             // Marker visual size is intentionally small and fixed —

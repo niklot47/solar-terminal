@@ -12,5 +12,26 @@
 
     "camera.mode.free":      "Свободно",
     "camera.mode.focus":     "Фокус",
-    "camera.mode.follow":    "Слежение"
+    "camera.mode.follow":    "Слежение",
+
+    "system.sol":            "Солнечная система",
+
+    "body.sol.sun":          "Солнце",
+    "body.sol.mercury":      "Меркурий",
+    "body.sol.venus":        "Венера",
+    "body.sol.earth":        "Земля",
+    "body.sol.moon":         "Луна",
+    "body.sol.mars":         "Марс",
+    "body.sol.phobos":       "Фобос",
+    "body.sol.deimos":       "Деймос",
+    "body.sol.jupiter":      "Юпитер",
+    "body.sol.io":           "Ио",
+    "body.sol.europa":       "Европа",
+    "body.sol.ganymede":     "Ганимед",
+    "body.sol.callisto":     "Каллисто",
+    "body.sol.saturn":       "Сатурн",
+    "body.sol.titan":        "Титан",
+    "body.sol.uranus":       "Уран",
+    "body.sol.neptune":      "Нептун",
+    "body.sol.pluto":        "Плутон"
 }

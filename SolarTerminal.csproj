@@ -54,8 +54,10 @@
     <Compile Include="Assets\Scripts\Bootstrap\OrbitalMapBootstrap.cs" />
     <Compile Include="Assets\Scripts\Core\SimulationTime.cs" />
     <Compile Include="Assets\Scripts\Data\OrbitalSystemDefinition.cs" />
+    <Compile Include="Assets\Scripts\View\PlanetShadowApplicator.cs" />
     <Compile Include="Assets\Scripts\View\CameraDistanceEvaluator.cs" />
     <Compile Include="Assets\Scripts\Simulation\OrbitalSimulation.cs" />
+    <Compile Include="Assets\Scripts\View\PlanetLightingApplicator.cs" />
     <Compile Include="Assets\Scripts\Simulation\OrbitalBodyState.cs" />
     <Compile Include="Assets\Scripts\Core\ILocalizationProvider.cs" />
     <Compile Include="Assets\Scripts\View\CelestialBodyView.cs" />
@@ -66,8 +68,9 @@
     <Compile Include="Assets\Scripts\Data\CelestialBodyDefinition.cs" />
     <Compile Include="Assets\Scripts\Core\DefaultLocalizationProvider.cs" />
     <Compile Include="Assets\Scripts\Editor\OrbitalSystemValidator.cs" />
-    <Compile Include="Assets\Scripts\Simulation\OrbitalMechanics.cs" />
     <Compile Include="Assets\Scripts\Data\BodyImportRecord.cs" />
+    <Compile Include="Assets\Scripts\Simulation\OrbitalMechanics.cs" />
+    <Compile Include="Assets\Scripts\View\StarLightDirector.cs" />
     <Compile Include="Assets\Scripts\UI\SidePanelUIController.cs" />
     <Compile Include="Assets\Scripts\Core\LocalizationManager.cs" />
     <Compile Include="Assets\Scripts\UI\ObjectTreeUIController.cs" />

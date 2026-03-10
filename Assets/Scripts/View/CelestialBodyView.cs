@@ -1,95 +1,167 @@
+// CelestialBodyView.cs
+// Syncs a celestial body's visual transform hierarchy to its OrbitalBodyState each LateUpdate.
+//
+// Transform hierarchy inside each view:
+//
+//   CelestialBodyView (BodyRoot)   — follows orbital position
+//     AxialTiltRoot                — constant axial tilt rotation (set once in Initialize)
+//       VisualSpinRoot             — spins around local Y each frame
+//         [nearPrefab instance]    — actual visual content
+//         [ringPrefab instance]    — rings if present
+
 using UnityEngine;
 using SolarTerminal.Data;
 using SolarTerminal.Simulation;
 
 namespace SolarTerminal.View
 {
-    /// <summary>
-    /// Syncs a celestial body's visual position to its OrbitalBodyState each LateUpdate.
-    /// Owns the BodyRepresentationController — delegates all LOD/representation logic to it.
-    ///
-    /// Selection and camera systems bind to CelestialBodyView (the logical body),
-    /// never to a specific representation instance. Switching representations is transparent.
-    /// </summary>
     public class CelestialBodyView : MonoBehaviour
     {
         // ------------------------------------------------------------------
-        // Runtime references — set by Initialize()
+        // Runtime references
         // ------------------------------------------------------------------
 
         private OrbitalBodyState             _state;
         private BodyRepresentationController _representationCtrl;
 
+        // Sub-roots of the transform hierarchy
+        private Transform _axialTiltRoot;
+        private Transform _visualSpinRoot;
+
         // ------------------------------------------------------------------
-        // Public accessors — used by UI, camera, selection
+        // Public accessors
         // ------------------------------------------------------------------
 
-        /// <summary>ScriptableObject definition: name, type, orbital elements.</summary>
-        public CelestialBodyDefinition Definition => _state?.Definition;
+        public CelestialBodyDefinition Definition  => _state?.Definition;
+        public Vector3                 WorldPosition => _state != null ? _state.Position : Vector3.zero;
+        public string                  BodyId      => _state?.Definition?.id;
 
-        /// <summary>Current world-space simulation position of this body.</summary>
-        public Vector3 WorldPosition => _state != null ? _state.Position : Vector3.zero;
-
-        /// <summary>Body id — convenience accessor.</summary>
-        public string BodyId => _state?.Definition?.id;
-
-        /// <summary>Current visual representation level (Near/Medium/Far). Informational.</summary>
         public BodyRepresentationController.RepresentationLevel RepresentationLevel
             => _representationCtrl != null
                 ? _representationCtrl.CurrentLevel
                 : BodyRepresentationController.RepresentationLevel.Near;
 
+        /// <summary>
+        /// The VisualSpinRoot transform — use this to attach surface ports or
+        /// planet-surface objects that must rotate with the planet.
+        /// </summary>
+        public Transform VisualSpinRoot => _visualSpinRoot;
+
         // ------------------------------------------------------------------
         // Initialize — called by Bootstrap
         // ------------------------------------------------------------------
 
-        /// <summary>
-        /// Wire this view to its simulation state and set up representations.
-        /// Bootstrap passes the already-instantiated near prefab so existing
-        /// setup flow is preserved.
-        /// </summary>
         public void Initialize(OrbitalBodyState state, GameObject nearPrefabInstance)
         {
             _state = state;
-
-            // Move the near prefab instance under this view's transform
-            nearPrefabInstance.transform.SetParent(transform);
-            nearPrefabInstance.transform.localPosition = Vector3.zero;
-
-            // Scale from definition
-            float r = state.Definition.visualRadius > 0f ? state.Definition.visualRadius : 1f;
-            nearPrefabInstance.transform.localScale = Vector3.one * r;
-
-            // Build representation controller
-            _representationCtrl = gameObject.AddComponent<BodyRepresentationController>();
-
-            // Override the nearPrefab slot on the definition at runtime if it's empty,
-            // so RepresentationController knows which instance to manage.
-            // This avoids requiring a second prefab reference for the near slot.
             var def = state.Definition;
-            if (def.nearPrefab == null)
+            float r = def.visualRadius > 0f ? def.visualRadius : 1f;
+
+            // ── Build transform hierarchy ─────────────────────────────────
+
+            // AxialTiltRoot: constant tilt, set once
+            var tiltGO = new GameObject("AxialTiltRoot");
+            tiltGO.transform.SetParent(transform, worldPositionStays: false);
+            tiltGO.transform.localPosition = Vector3.zero;
+            tiltGO.transform.localRotation = Quaternion.Euler(def.axialTiltDegrees, 0f, 0f);
+            _axialTiltRoot = tiltGO.transform;
+
+            // VisualSpinRoot: rotates each LateUpdate
+            var spinGO = new GameObject("VisualSpinRoot");
+            spinGO.transform.SetParent(_axialTiltRoot, worldPositionStays: false);
+            spinGO.transform.localPosition = Vector3.zero;
+            spinGO.transform.localRotation = Quaternion.identity;
+            _visualSpinRoot = spinGO.transform;
+
+            // ── Place visual content under VisualSpinRoot ─────────────────
+            nearPrefabInstance.transform.SetParent(_visualSpinRoot);
+            nearPrefabInstance.transform.localPosition = Vector3.zero;
+            nearPrefabInstance.transform.localScale    = Vector3.one * r;
+
+            // ── Rings ─────────────────────────────────────────────────────
+            // Rings are parented to AxialTiltRoot (not VisualSpinRoot)
+            // so they stay in the equatorial plane without spinning with the surface.
+            if (def.ringPrefab != null)
             {
-                // nearPrefabInstance already instantiated by Bootstrap — hand it to controller
-                _representationCtrl.InitializeWithInstance(def, nearPrefabInstance, CameraDistanceEvaluator.MainCamera);
+                var ringInstance = Instantiate(def.ringPrefab);
+                ringInstance.name = $"Rings_{def.id}";
+                ringInstance.transform.SetParent(_axialTiltRoot, worldPositionStays: false);
+                ringInstance.transform.localPosition = Vector3.zero;
+                ringInstance.transform.localRotation = Quaternion.identity;
+                ringInstance.transform.localScale    = Vector3.one * r * def.ringScale;
             }
-            else
-            {
-                // Controller will instantiate its own copy from nearPrefab
-                // (Bootstrap instance is kept as nearInstance via controller)
-                _representationCtrl.InitializeWithInstance(def, nearPrefabInstance, CameraDistanceEvaluator.MainCamera);
-            }
+
+            // ── Representation controller ─────────────────────────────────
+            // Pass _visualSpinRoot so all representations live inside the spin hierarchy.
+            _representationCtrl = gameObject.AddComponent<BodyRepresentationController>();
+            _representationCtrl.InitializeWithInstance(
+                def, nearPrefabInstance, _visualSpinRoot, CameraDistanceEvaluator.MainCamera);
+
+            // ── Initial spin angle at epoch ───────────────────────────────
+            ApplySpin(def.rotationPhaseAtEpochDegrees, def.isTidallyLocked, Vector3.forward);
         }
 
         // ------------------------------------------------------------------
         // Lifecycle
         // ------------------------------------------------------------------
 
+        private int _debugFrame;
+
         private void LateUpdate()
         {
             if (_state == null) return;
-            // Move this view's root transform to simulation position.
-            // All child representations (near/medium/far) move with it for free.
+
+            // 1. Move body root to orbital position
             transform.position = _state.Position;
+
+            // 2. Apply spin or tidal lock
+            if (_state.Definition.isTidallyLocked)
+                ApplyTidalLock(_state.TidalLockForward);
+            else
+                ApplySpin(_state.SpinAngleDegrees,
+                          tidally: false,
+                          tidalForward: Vector3.forward);
+
+            // Debug: log every 60 frames per body
+            if (++_debugFrame % 60 == 0)
+            {
+                var def = _state.Definition;
+                if (def.isTidallyLocked)
+                {
+                    Debug.Log($"[BodyView:{def.id}] TIDAL  tidalFwd={_state.TidalLockForward:F2}" +
+                              $"  spinRootRot={_visualSpinRoot?.localEulerAngles:F1}" +
+                              $"  tiltRootRot={_axialTiltRoot?.localEulerAngles:F1}");
+                }
+                else
+                {
+                    Debug.Log($"[BodyView:{def.id}] SPIN   spinAngle={_state.SpinAngleDegrees % 360f:F1}°" +
+                              $"  period={def.rotationPeriodHours}h" +
+                              $"  spinRootRot={_visualSpinRoot?.localEulerAngles:F1}" +
+                              $"  tiltRootRot={_axialTiltRoot?.localEulerAngles:F1}" +
+                              $"  worldPos={transform.position:F1}");
+                }
+            }
+        }
+
+        // ------------------------------------------------------------------
+        // Spin helpers
+        // ------------------------------------------------------------------
+
+        private void ApplySpin(float angleDegrees, bool tidally, Vector3 tidalForward)
+        {
+            if (_visualSpinRoot == null) return;
+            _visualSpinRoot.localRotation = Quaternion.Euler(0f, angleDegrees, 0f);
+        }
+
+        private void ApplyTidalLock(Vector3 worldForward)
+        {
+            if (_visualSpinRoot == null || worldForward.sqrMagnitude < 0.0001f) return;
+
+            // Convert world-space toward-parent direction into AxialTiltRoot's local space,
+            // then align VisualSpinRoot's local Z toward that direction.
+            Vector3 localForward = _axialTiltRoot.InverseTransformDirection(worldForward);
+            if (localForward.sqrMagnitude > 0.0001f)
+                _visualSpinRoot.localRotation = Quaternion.LookRotation(localForward, Vector3.up);
         }
     }
 }

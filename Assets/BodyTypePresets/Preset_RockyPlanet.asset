@@ -18,7 +18,7 @@ MonoBehaviour:
   isSelectable: 1
   sortOrder: 0
   visualRadius: 2
-  defaultNearPrefab: {fileID: 1544024178128140211, guid: e01bd8aa18290964ab58c126b734e2eb, type: 3}
+  defaultNearPrefab: {fileID: 3218205515569768251, guid: 2e398aacfd165b643bc5e9b009547c7f, type: 3}
   defaultFarPrefab: {fileID: 0}
   defaultEccentricity: 0
   defaultInclination: 0

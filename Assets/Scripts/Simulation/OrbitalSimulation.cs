@@ -23,6 +23,7 @@ namespace SolarTerminal.Simulation
 
         // Accumulated simulation time in simulation-seconds
         private float _simulationTime;
+        private int   _debugTick;
 
         public IReadOnlyDictionary<string, OrbitalBodyState> States => _states;
 
@@ -80,6 +81,21 @@ namespace SolarTerminal.Simulation
         {
             _simulationTime += simTime.SimDeltaTime;
             ComputeAllPositions(_simulationTime);
+
+            if (++_debugTick % 60 == 0)
+            {
+                var sb = new System.Text.StringBuilder();
+                sb.AppendLine($"[OrbitalSimulation] t={_simulationTime:F1}s  bodies={_updateOrder.Count}");
+                foreach (var state in _updateOrder)
+                {
+                    var def = state.Definition;
+                    if (def.isTidallyLocked)
+                        sb.AppendLine($"  {def.id,-16} pos={state.Position:F1}  TIDAL fwd={state.TidalLockForward:F2}");
+                    else
+                        sb.AppendLine($"  {def.id,-16} pos={state.Position:F1}  spin={state.SpinAngleDegrees % 360f:F1}°  period={def.rotationPeriodHours}h");
+                }
+                Debug.Log(sb.ToString());
+            }
         }
 
         // ------------------------------------------------------------------
@@ -92,30 +108,54 @@ namespace SolarTerminal.Simulation
             {
                 var def = state.Definition;
 
-                // Root body — fixed at world origin
+                // ── Orbital position ──────────────────────────────────────
                 if (string.IsNullOrEmpty(def.parentId) || def.orbitalPeriod <= 0f)
                 {
                     state.Position = Vector3.zero;
-                    continue;
+                }
+                else
+                {
+                    Vector3 localPos = OrbitalMechanics.ComputeOrbitalPosition(
+                        def.semiMajorAxis,
+                        def.eccentricity,
+                        def.inclination,
+                        def.longitudeOfAscendingNode,
+                        def.argumentOfPeriapsis,
+                        def.meanAnomalyAtEpoch,
+                        def.orbitalPeriod,
+                        time);
+
+                    Vector3 parentPos = Vector3.zero;
+                    if (_states.TryGetValue(def.parentId, out var parentState))
+                        parentPos = parentState.Position;
+
+                    state.Position = parentPos + localPos;
                 }
 
-                // Compute position relative to parent using Keplerian mechanics
-                Vector3 localPos = OrbitalMechanics.ComputeOrbitalPosition(
-                    def.semiMajorAxis,
-                    def.eccentricity,
-                    def.inclination,
-                    def.longitudeOfAscendingNode,
-                    def.argumentOfPeriapsis,
-                    def.meanAnomalyAtEpoch,
-                    def.orbitalPeriod,
-                    time);
-
-                // Add parent world position
-                Vector3 parentPos = Vector3.zero;
-                if (_states.TryGetValue(def.parentId, out var parentState))
-                    parentPos = parentState.Position;
-
-                state.Position = parentPos + localPos;
+                // ── Axial spin ────────────────────────────────────────────
+                if (def.isTidallyLocked)
+                {
+                    // Tidal lock: orient toward parent body.
+                    // SpinAngleDegrees is unused; TidalLockForward is set for View.
+                    if (!string.IsNullOrEmpty(def.parentId) &&
+                        _states.TryGetValue(def.parentId, out var lockParent))
+                    {
+                        Vector3 toParent = lockParent.Position - state.Position;
+                        state.TidalLockForward = toParent.sqrMagnitude > 0.0001f
+                            ? toParent.normalized
+                            : Vector3.forward;
+                    }
+                }
+                else if (def.rotationPeriodHours != 0f)
+                {
+                    // Free spin: angle = phase + (time / period) * 360°
+                    // time and rotationPeriodHours are both in simulation-hours — units match.
+                    // Negative period = retrograde rotation.
+                    float fullRotations = time / def.rotationPeriodHours;
+                    state.SpinAngleDegrees = def.rotationPhaseAtEpochDegrees
+                                           + fullRotations * 360f;
+                }
+                // If rotationPeriodHours == 0, body is non-rotating.
             }
         }
 

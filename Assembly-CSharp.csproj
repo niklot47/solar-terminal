@@ -53,26 +53,28 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\UI\USS\OrbitalMapHUD.uss" />
-    <None Include="Assets\StoreAssets\ParallelCascades\ProceduralShaders\HLSL\Hash.hlsl" />
-    <None Include="Assets\StoreAssets\ParallelCascades\ProceduralShaders\HLSL\GetMainLightDirectionLegacy.hlsl" />
-    <None Include="Assets\StoreAssets\ParallelCascades\ProceduralShaders\HLSL\DoubleWarp.hlsl" />
-    <None Include="Assets\StoreAssets\ParallelCascades\ProceduralShaders\HLSL\FractalNoise.hlsl" />
-    <None Include="Assets\StoreAssets\ParallelCascades\ProceduralShaders\HLSL\VoronoiNoise2D.hlsl" />
-    <None Include="Assets\StoreAssets\ParallelCascades\ProceduralShaders\HLSL\SphericalCoordinateUtilities.hlsl" />
-    <None Include="Assets\StoreAssets\ParallelCascades\ProceduralShaders\HLSL\SmoothMath.hlsl" />
+    <None Include="Assets\ParallelCascades\ProceduralShaders\HLSL\Hash.hlsl" />
+    <None Include="Assets\ParallelCascades\ProceduralShaders\HLSL\GetMainLightDirectionLegacy.hlsl" />
+    <None Include="Assets\ParallelCascades\ProceduralShaders\HLSL\DoubleWarp.hlsl" />
+    <None Include="Assets\ParallelCascades\ProceduralShaders\HLSL\FractalNoise.hlsl" />
+    <None Include="Assets\ParallelCascades\ProceduralShaders\HLSL\VoronoiNoise2D.hlsl" />
+    <None Include="Assets\ParallelCascades\ProceduralShaders\HLSL\SphericalCoordinateUtilities.hlsl" />
+    <None Include="Assets\ParallelCascades\ProceduralShaders\HLSL\SmoothMath.hlsl" />
     <None Include="Assets\UI\UXML\OrbitalMapHUD.uxml" />
-    <None Include="Assets\StoreAssets\ParallelCascades\ProceduralShaders\HLSL\GetMainLightProperties.hlsl" />
-    <None Include="Assets\StoreAssets\ParallelCascades\ProceduralPlanetGenerationCommon\Shaders\HLSL\DomainWarpSampleTexture.hlsl" />
+    <None Include="Assets\ParallelCascades\ProceduralShaders\HLSL\GetMainLightProperties.hlsl" />
+    <None Include="Assets\ParallelCascades\ProceduralPlanetGenerationCommon\Shaders\HLSL\DomainWarpSampleTexture.hlsl" />
+    <None Include="Assets\Shaders\PlanetShadowOverlay.shader" />
     <None Include="Assets\UI\UXML\TreeItem.uxml" />
-    <None Include="Assets\StoreAssets\ParallelCascades\ProceduralPlanetGenerationCommon\Shaders\HLSL\Corona.hlsl" />
+    <None Include="Assets\ParallelCascades\ProceduralPlanetGenerationCommon\Shaders\HLSL\Corona.hlsl" />
     <None Include="Assets\UI\USS\UITheme.uss" />
-    <None Include="Assets\StoreAssets\ParallelCascades\ProceduralShaders\HLSL\RaySphereIntersection.hlsl" />
-    <None Include="Assets\StoreAssets\ParallelCascades\ProceduralPlanetGenerationCommon\Shaders\HLSL\PlanetGlow.hlsl" />
-    <None Include="Assets\StoreAssets\ParallelCascades\ProceduralShaders\HLSL\SimplexNoise.hlsl" />
-    <None Include="Assets\StoreAssets\ParallelCascades\ProceduralShaders\HLSL\VoronoiNoise3D.hlsl" />
-    <None Include="Assets\StoreAssets\ParallelCascades\ProceduralShaders\HLSL\NormalFromCubemap.hlsl" />
-    <None Include="Assets\StoreAssets\ParallelCascades\ProceduralShaders\HLSL\CubemapUV.hlsl" />
-    <None Include="Assets\StoreAssets\ParallelCascades\ProceduralPlanetGenerationCommon\Shaders\HLSL\AsteroidRing.hlsl" />
+    <None Include="Assets\ParallelCascades\ProceduralShaders\HLSL\RaySphereIntersection.hlsl" />
+    <None Include="Assets\ParallelCascades\ProceduralPlanetGenerationCommon\Shaders\HLSL\PlanetGlow.hlsl" />
+    <None Include="Assets\ParallelCascades\ProceduralShaders\HLSL\SimplexNoise.hlsl" />
+    <None Include="Assets\Shaders\PlanetLit.shader" />
+    <None Include="Assets\ParallelCascades\ProceduralShaders\HLSL\VoronoiNoise3D.hlsl" />
+    <None Include="Assets\ParallelCascades\ProceduralShaders\HLSL\NormalFromCubemap.hlsl" />
+    <None Include="Assets\ParallelCascades\ProceduralShaders\HLSL\CubemapUV.hlsl" />
+    <None Include="Assets\ParallelCascades\ProceduralPlanetGenerationCommon\Shaders\HLSL\AsteroidRing.hlsl" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -1333,18 +1335,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="ParallelCascades.ProceduralPlanetGenerationLite.Runtime.csproj" />
+    <ProjectReference Include="ParallelCascades.ProceduralShaders.Editor.csproj" />
+    <ProjectReference Include="ParallelCascades.ProceduralPlanetGenerationCommon.PostProcessing.csproj" />
     <ProjectReference Include="ParallelCascades.Common.Runtime.csproj" />
     <ProjectReference Include="ParallelCascades.ProceduralPlanetGenerationCommon.Editor.csproj" />
     <ProjectReference Include="SolarTerminal.csproj" />
     <ProjectReference Include="ParallelCascades.ProceduralShaders.Runtime.csproj" />
-    <ProjectReference Include="ParallelCascades.ProceduralShaders.Editor.csproj" />
     <ProjectReference Include="ParallelCascades.Common.Editor.csproj" />
     <ProjectReference Include="ParallelCascades.ProceduralPlanetGeneration.Runtime.csproj" />
-    <ProjectReference Include="ParallelCascades.ProceduralPlanetGenerationCommon.PostProcessing.csproj" />
     <ProjectReference Include="ParallelCascades.ProceduralPlanetGenerationLite.Editor.csproj" />
-    <ProjectReference Include="ParallelCascades.Common.Rendering.csproj" />
     <ProjectReference Include="ParallelCascades.ProceduralPlanetGenerationCommon.Runtime.csproj" />
+    <ProjectReference Include="ParallelCascades.ProceduralPlanetGenerationLite.Runtime.csproj" />
+    <ProjectReference Include="ParallelCascades.Common.Rendering.csproj" />
   </ItemGroup>
   <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
   <ItemGroup>

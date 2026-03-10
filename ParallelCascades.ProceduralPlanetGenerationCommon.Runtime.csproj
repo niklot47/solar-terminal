@@ -49,30 +49,30 @@
     <Analyzer Include="C:\MyPrograms\Unity\Hub\Editor\6000.3.10f1\Editor\Data\Tools\BuildPipeline\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\StoreAssets\ParallelCascades\ProceduralPlanetGenerationCommon\Runtime\ProceduralComponents\EarthSurfaceProceduralComponent.cs" />
-    <Compile Include="Assets\StoreAssets\ParallelCascades\ProceduralPlanetGenerationCommon\Runtime\ProceduralComponents\MoonPatternComponent.cs" />
-    <Compile Include="Assets\StoreAssets\ParallelCascades\ProceduralPlanetGenerationCommon\Runtime\RuntimeGenerationSample\SystemRandomizer.cs" />
-    <Compile Include="Assets\StoreAssets\ParallelCascades\ProceduralPlanetGenerationCommon\Runtime\ProceduralComponents\AsteroidRingShapeProceduralComponent.cs" />
-    <Compile Include="Assets\StoreAssets\ParallelCascades\ProceduralPlanetGenerationCommon\Runtime\ProceduralComponents\EarthLikeLandColorsProceduralComponent.cs" />
-    <Compile Include="Assets\StoreAssets\ParallelCascades\ProceduralPlanetGenerationCommon\Runtime\ProceduralComponents\StarPatternProceduralComponent.cs" />
-    <Compile Include="Assets\StoreAssets\ParallelCascades\ProceduralPlanetGenerationCommon\Runtime\RuntimeGenerationSample\BodySwitcher.cs" />
-    <Compile Include="Assets\StoreAssets\ParallelCascades\ProceduralPlanetGenerationCommon\Runtime\PostFXGlowEffect.cs" />
-    <Compile Include="Assets\StoreAssets\ParallelCascades\ProceduralPlanetGenerationCommon\Runtime\ProceduralComponents\PlanetGlowProceduralComponent.cs" />
-    <Compile Include="Assets\StoreAssets\ParallelCascades\ProceduralPlanetGenerationCommon\Runtime\ProceduralComponents\GradientProceduralComponent.cs" />
-    <Compile Include="Assets\StoreAssets\ParallelCascades\ProceduralPlanetGenerationCommon\Runtime\RuntimeGenerationSample\SimulationSpeedManager.cs" />
-    <Compile Include="Assets\StoreAssets\ParallelCascades\ProceduralPlanetGenerationCommon\Runtime\ProceduralBodyBase.cs" />
-    <Compile Include="Assets\StoreAssets\ParallelCascades\ProceduralPlanetGenerationCommon\Runtime\RuntimeGenerationSample\Orbit.cs" />
-    <Compile Include="Assets\StoreAssets\ParallelCascades\ProceduralPlanetGenerationCommon\Runtime\ProceduralComponents\FresnelProceduralComponent.cs" />
-    <Compile Include="Assets\StoreAssets\ParallelCascades\ProceduralPlanetGenerationCommon\Runtime\ProceduralComponents\StarGradientProceduralComponent.cs" />
-    <Compile Include="Assets\StoreAssets\ParallelCascades\ProceduralPlanetGenerationCommon\Runtime\ProceduralComponents\OceanProceduralComponent.cs" />
-    <Compile Include="Assets\StoreAssets\ParallelCascades\ProceduralPlanetGenerationCommon\Runtime\StarCorona.cs" />
-    <Compile Include="Assets\StoreAssets\ParallelCascades\ProceduralPlanetGenerationCommon\Runtime\ProceduralComponents\CoronaGlowProceduralComponent.cs" />
-    <Compile Include="Assets\StoreAssets\ParallelCascades\ProceduralPlanetGenerationCommon\Runtime\ProceduralComponents\GasGiantPatternProceduralComponent.cs" />
-    <Compile Include="Assets\StoreAssets\ParallelCascades\ProceduralPlanetGenerationCommon\Runtime\GradientUtilities.cs" />
-    <Compile Include="Assets\StoreAssets\ParallelCascades\ProceduralPlanetGenerationCommon\Runtime\PlanetGlow.cs" />
+    <Compile Include="Assets\ParallelCascades\ProceduralPlanetGenerationCommon\Runtime\ProceduralComponents\GasGiantPatternProceduralComponent.cs" />
+    <Compile Include="Assets\ParallelCascades\ProceduralPlanetGenerationCommon\Runtime\PlanetGlow.cs" />
+    <Compile Include="Assets\ParallelCascades\ProceduralPlanetGenerationCommon\Runtime\RuntimeGenerationSample\Orbit.cs" />
+    <Compile Include="Assets\ParallelCascades\ProceduralPlanetGenerationCommon\Runtime\ProceduralComponents\FresnelProceduralComponent.cs" />
+    <Compile Include="Assets\ParallelCascades\ProceduralPlanetGenerationCommon\Runtime\PostFXGlowEffect.cs" />
+    <Compile Include="Assets\ParallelCascades\ProceduralPlanetGenerationCommon\Runtime\RuntimeGenerationSample\BodySwitcher.cs" />
+    <Compile Include="Assets\ParallelCascades\ProceduralPlanetGenerationCommon\Runtime\RuntimeGenerationSample\SystemRandomizer.cs" />
+    <Compile Include="Assets\ParallelCascades\ProceduralPlanetGenerationCommon\Runtime\ProceduralComponents\StarGradientProceduralComponent.cs" />
+    <Compile Include="Assets\ParallelCascades\ProceduralPlanetGenerationCommon\Runtime\ProceduralBodyBase.cs" />
+    <Compile Include="Assets\ParallelCascades\ProceduralPlanetGenerationCommon\Runtime\StarCorona.cs" />
+    <Compile Include="Assets\ParallelCascades\ProceduralPlanetGenerationCommon\Runtime\ProceduralComponents\EarthSurfaceProceduralComponent.cs" />
+    <Compile Include="Assets\ParallelCascades\ProceduralPlanetGenerationCommon\Runtime\ProceduralComponents\GradientProceduralComponent.cs" />
+    <Compile Include="Assets\ParallelCascades\ProceduralPlanetGenerationCommon\Runtime\ProceduralComponents\MoonPatternComponent.cs" />
+    <Compile Include="Assets\ParallelCascades\ProceduralPlanetGenerationCommon\Runtime\ProceduralComponents\StarPatternProceduralComponent.cs" />
+    <Compile Include="Assets\ParallelCascades\ProceduralPlanetGenerationCommon\Runtime\ProceduralComponents\PlanetGlowProceduralComponent.cs" />
+    <Compile Include="Assets\ParallelCascades\ProceduralPlanetGenerationCommon\Runtime\ProceduralComponents\CoronaGlowProceduralComponent.cs" />
+    <Compile Include="Assets\ParallelCascades\ProceduralPlanetGenerationCommon\Runtime\ProceduralComponents\EarthLikeLandColorsProceduralComponent.cs" />
+    <Compile Include="Assets\ParallelCascades\ProceduralPlanetGenerationCommon\Runtime\ProceduralComponents\AsteroidRingShapeProceduralComponent.cs" />
+    <Compile Include="Assets\ParallelCascades\ProceduralPlanetGenerationCommon\Runtime\RuntimeGenerationSample\SimulationSpeedManager.cs" />
+    <Compile Include="Assets\ParallelCascades\ProceduralPlanetGenerationCommon\Runtime\ProceduralComponents\OceanProceduralComponent.cs" />
+    <Compile Include="Assets\ParallelCascades\ProceduralPlanetGenerationCommon\Runtime\GradientUtilities.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\StoreAssets\ParallelCascades\ProceduralPlanetGenerationCommon\Runtime\ParallelCascades.ProceduralPlanetGenerationCommon.Runtime.asmdef" />
+    <None Include="Assets\ParallelCascades\ProceduralPlanetGenerationCommon\Runtime\ParallelCascades.ProceduralPlanetGenerationCommon.Runtime.asmdef" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

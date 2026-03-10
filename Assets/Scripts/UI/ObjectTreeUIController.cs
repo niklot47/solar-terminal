@@ -112,8 +112,13 @@ namespace SolarTerminal.UI
             dot.style.backgroundColor = new StyleColor(DotColor(view.Definition.bodyType));
             row.Add(dot);
 
-            // Label
-            var label = new Label(view.Definition.bodyName ?? view.BodyId ?? "?");
+            // Label — resolve via localization key; fall back to id if key is missing
+            string displayName = !string.IsNullOrEmpty(view.Definition.displayNameKey)
+                ? LocalizationManager.Get(view.Definition.displayNameKey)
+                : (!string.IsNullOrEmpty(view.Definition.bodyName)
+                    ? view.Definition.bodyName
+                    : view.BodyId ?? "?");
+            var label = new Label(displayName);
             label.style.color     = new StyleColor(COL_TEXT);
             label.style.fontSize  = 13;
             label.style.flexGrow  = 1;

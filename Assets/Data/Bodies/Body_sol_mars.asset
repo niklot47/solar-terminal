@@ -27,7 +27,13 @@ MonoBehaviour:
   argumentOfPeriapsis: 5.865
   meanAnomalyAtEpoch: 0.338
   orbitalPeriod: 16488
-  nearPrefab: {fileID: 1544024178128140211, guid: e01bd8aa18290964ab58c126b734e2eb, type: 3}
+  rotationPeriodSeconds: 88643
+  axialTiltDegrees: 25.2
+  rotationPhaseAtEpochDegrees: 0
+  isTidallyLocked: 0
+  ringPrefab: {fileID: 285174170089080433, guid: 92289db060642c34f85f6885bee2d55f, type: 3}
+  ringScale: 1
+  nearPrefab: {fileID: 1518283637364674436, guid: 5c03ce57acc2cf24a9db81ff1782dad0, type: 3}
   mediumPrefab: {fileID: 0}
   farPrefab: {fileID: 0}
   sourcePreset: {fileID: 11400000, guid: 2dc7d6fb45f185741a0319200d341ffd, type: 2}

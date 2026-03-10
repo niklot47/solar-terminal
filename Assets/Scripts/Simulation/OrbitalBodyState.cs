@@ -18,15 +18,31 @@ namespace SolarTerminal.Simulation
         /// <summary>Current true anomaly (radians) — informational, set by simulation.</summary>
         public float TrueAnomaly { get; set; }
 
+        /// <summary>
+        /// Current spin angle around the body's own axis (degrees).
+        /// Accounts for rotationPhaseAtEpoch and elapsed simulation time.
+        /// Updated each Tick() by OrbitalSimulation.
+        /// </summary>
+        public float SpinAngleDegrees { get; set; }
+
+        /// <summary>
+        /// For tidally locked bodies: world-space direction from this body toward its parent.
+        /// CelestialBodyView uses this to orient the visual spin root each frame.
+        /// Meaningless for non-locked bodies.
+        /// </summary>
+        public Vector3 TidalLockForward { get; set; }
+
         // Legacy field kept so Bootstrap.CreateViews() compiles unchanged
         /// <summary>Not used in Keplerian simulation. Preserved for API compatibility.</summary>
         public float CurrentAngle { get; set; }
 
         public OrbitalBodyState(CelestialBodyDefinition definition)
         {
-            Definition   = definition;
-            CurrentAngle = definition.startAngle;
-            Position     = Vector3.zero;
+            Definition        = definition;
+            CurrentAngle      = definition.startAngle;
+            SpinAngleDegrees  = definition.rotationPhaseAtEpochDegrees;
+            TidalLockForward  = Vector3.forward;
+            Position          = Vector3.zero;
         }
     }
 }

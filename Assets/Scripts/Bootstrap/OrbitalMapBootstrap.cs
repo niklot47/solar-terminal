@@ -79,9 +79,34 @@ namespace SolarTerminal.Bootstrap
             CreateViews(bodies);
         }
 
+        private int _debugTickCount;
+        private float _debugRealTimeAccum;
+        private float _debugSimTimeAccum;
+
         private void Update()
         {
             if (_simulation == null) return;
+
+            float realDelta = Time.deltaTime;
+            float simDelta  = _simulationTime.SimDeltaTime;
+
+            _debugTickCount++;
+            _debugRealTimeAccum += realDelta;
+            _debugSimTimeAccum  += simDelta;
+
+            // Log every 120 frames: real time vs sim time ratio
+            if (_debugTickCount % 120 == 0)
+            {
+                float ratio = _debugRealTimeAccum > 0f
+                    ? _debugSimTimeAccum / _debugRealTimeAccum
+                    : 0f;
+                Debug.Log($"[Bootstrap] frames=120  realDt={realDelta:F4}s  simDt={simDelta:F4}h" +
+                          $"  ratio={ratio:F2}x  simTime={_simulation.SimulationTime:F2}h" +
+                          $"  timeScale={_simulationTime.TimeScale}");
+                _debugRealTimeAccum = 0f;
+                _debugSimTimeAccum  = 0f;
+            }
+
             _simulation.Tick(_simulationTime);
         }
 
